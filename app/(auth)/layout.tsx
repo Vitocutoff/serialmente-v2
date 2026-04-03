@@ -6,30 +6,31 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="min-h-dvh px-4 py-6">
-      <div className="mx-auto flex min-h-[calc(100dvh-3rem)] w-full max-w-md flex-col justify-center">
-        <div className="mb-8 flex flex-col items-center text-center">
-          <div className="relative mb-4 h-20 w-20">
-            <Image
-              src="/logo.png"
-              alt="Logo SerialMente"
-              width={80}
-              height={80}
-              priority
-              className="object-contain"
-            />
-          </div>
+    <main className="relative h-svh w-full overflow-hidden">
+      <Image
+        src="/bgApp.png"
+        alt="Background SerialMente"
+        fill
+        priority
+        className="object-cover"
+      />
 
-          <p className="font-brand text-3xl text-white">SerialMente</p>
+      <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/45 to-black/80" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.22)_0%,rgba(139,92,246,0.08)_22%,transparent_48%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.22)_70%,rgba(0,0,0,0.52)_100%)]" />
 
-          <p className="mt-3 max-w-xs text-sm leading-6 text-foreground-muted">
-            Accedi al tuo spazio personale dedicato alle serie TV.
+      <div className="relative z-10 flex h-full flex-col px-4 pb-6 pt-4">
+        <div className="flex-1" />
+
+        <section className="mb-8 flex flex-col items-center text-center">
+          <p className="font-brand text-4xl text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)]">
+            SerialMente
           </p>
-        </div>
+        </section>
 
-        <div className="rounded-3xl border border-white/10 bg-white/5 p-4 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl">
+        <section className="flex justify-center">
           {children}
-        </div>
+        </section>
       </div>
     </main>
   );

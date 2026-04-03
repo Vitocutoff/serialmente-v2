@@ -41,7 +41,7 @@ export default function HomePage() {
 
           <p className="mt-4 max-w-xs text-sm leading-6 text-foreground-muted">
             Tieni traccia delle tue serie preferite, scopri il tempo che dedichi
-            alla visione e molto altro ancora.
+            alla visione e molto altro ancora!
           </p>
         </section>
 
