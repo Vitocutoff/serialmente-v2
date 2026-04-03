@@ -20,19 +20,8 @@ export default function AuthLayout({
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.22)_70%,rgba(0,0,0,0.52)_100%)]" />
 
       <div className="relative z-10 flex min-h-svh items-center justify-center px-4 py-6">
-        <div className="flex w-full max-w-88 flex-col items-center">
-          <div className="mb-4 flex justify-center">
-            <Image
-              src="/logo.png"
-              alt="Logo SerialMente"
-              width={52}
-              height={52}
-              priority
-              className="object-contain"
-            />
-          </div>
-
-          <p className="mb-5 font-brand text-4xl text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)]">
+        <div className="w-full max-w-88">
+          <p className="mb-5 text-center font-brand text-4xl text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)]">
             SerialMente
           </p>
 

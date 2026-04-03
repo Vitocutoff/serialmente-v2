@@ -6,11 +6,20 @@ export default function SignUpPage() {
   return (
     <SignUp
       appearance={{
+        options: {
+          logoImageUrl: "/logo.png",
+          logoPlacement: "inside",
+          socialButtonsPlacement: "top",
+          socialButtonsVariant: "blockButton",
+        },
         elements: {
           rootBox: "w-full",
           cardBox: "w-full",
           card:
             "w-full rounded-[24px] border border-white/10 bg-white/5 px-4 py-5 shadow-[0_20px_60px_rgba(0,0,0,0.35)] backdrop-blur-xl",
+
+          logoBox: "mb-4 flex justify-start",
+          logoImage: "h-10 w-10 object-contain",
 
           headerTitle:
             "text-[1.75rem] font-semibold tracking-[-0.02em] text-white",
@@ -24,7 +33,6 @@ export default function SignUpPage() {
           dividerText: "text-[12px] font-medium text-white/40",
 
           formFieldLabel: "mb-1.5 text-[14px] font-medium text-white/78",
-
           formFieldInput:
             "h-11 rounded-xl border border-white/10 bg-white/10 px-4 text-[16px] text-white placeholder:text-[14px] placeholder:text-white/40 focus:border-violet-400 focus:ring-0",
 
@@ -37,12 +45,9 @@ export default function SignUpPage() {
 
           formResendCodeLink: "text-[13px] text-white hover:text-white/85",
           identityPreviewText: "text-[13px] text-white/70",
-          identityPreviewEditButton: "text-[13px] text-white/60 hover:text-white",
+          identityPreviewEditButton:
+            "text-[13px] text-white/60 hover:text-white",
           alertText: "text-[13px]",
-        },
-        layout: {
-          socialButtonsPlacement: "top",
-          socialButtonsVariant: "blockButton",
         },
       }}
     />
