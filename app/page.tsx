@@ -1,5 +1,8 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "motion/react";
 
 export default function HomePage() {
   return (
@@ -10,6 +13,7 @@ export default function HomePage() {
         alt="Background SerialMente mobile"
         fill
         priority
+        sizes="(max-width: 768px) 100vw"
         className="object-cover md:hidden"
       />
 
@@ -19,6 +23,7 @@ export default function HomePage() {
         alt="Background SerialMente desktop"
         fill
         priority
+        sizes="(min-width: 769px) 100vw"
         className="hidden object-cover md:block"
       />
 
@@ -33,8 +38,25 @@ export default function HomePage() {
 
       <div className="relative z-10 flex h-full flex-col px-4 pb-6 pt-4 md:px-8 md:pb-10 md:pt-8">
         <div className="flex h-full flex-col items-center justify-center text-center">
-          <section className="animate-[fadeUp_700ms_ease-out] flex flex-col items-center">
-            <div className="relative mb-6 flex h-28 w-28 items-center justify-center md:mb-8 md:h-36 md:w-36">
+          <motion.section
+            initial={{ opacity: 0, y: 10, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{
+              duration: 0.65,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="flex flex-col items-center"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 8, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                duration: 0.7,
+                delay: 0.05,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="relative mb-6 flex h-28 w-28 items-center justify-center md:mb-8 md:h-36 md:w-36"
+            >
               <div className="absolute h-24 w-24 rounded-full bg-brand/30 blur-2xl md:h-32 md:w-32 md:blur-3xl" />
 
               <div className="relative h-28 w-28 md:h-36 md:w-36">
@@ -47,21 +69,48 @@ export default function HomePage() {
                   className="object-contain drop-shadow-[0_8px_30px_rgba(0,0,0,0.45)] md:drop-shadow-[0_12px_40px_rgba(0,0,0,0.5)]"
                 />
               </div>
-            </div>
+            </motion.div>
 
-            <p className="font-brand text-4xl text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)] md:text-6xl xl:text-7xl">
+            <motion.p
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.55,
+                delay: 0.12,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="font-brand text-4xl text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)] md:text-6xl xl:text-7xl"
+            >
               SerialMente
-            </p>
+            </motion.p>
 
-            <p className="mt-4 max-w-xs text-sm leading-6 text-foreground-muted md:mt-6 md:max-w-2xl md:text-base md:leading-8 xl:text-lg">
+            <motion.p
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.55,
+                delay: 0.18,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="mt-4 max-w-xs text-sm leading-6 text-foreground-muted md:mt-6 md:max-w-2xl md:text-base md:leading-8 xl:text-lg"
+            >
               Tieni traccia delle tue serie preferite, scopri il tempo che
               dedichi alla visione e vivi la tua esperienza in modo più
               personale.
-            </p>
-          </section>
+            </motion.p>
+          </motion.section>
 
           {/* CTA mobile */}
-          <section className="mt-10 flex w-full flex-col gap-3 md:hidden">
+          <motion.section
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.55,
+              delay: 0.24,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="mt-10 flex w-full flex-col gap-3 md:hidden"
+          >
             <Link
               href="/sign-in"
               className="flex h-12 items-center justify-center rounded-2xl bg-linear-to-r from-violet-500 to-fuchsia-500 text-sm font-semibold text-white shadow-[0_10px_30px_rgba(139,92,246,0.35)] transition active:scale-[0.97]"
@@ -75,10 +124,19 @@ export default function HomePage() {
             >
               Registrati
             </Link>
-          </section>
+          </motion.section>
 
           {/* CTA desktop */}
-          <section className="mt-10 hidden flex-wrap items-center justify-center gap-4 md:flex">
+          <motion.section
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.55,
+              delay: 0.24,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="mt-10 hidden flex-wrap items-center justify-center gap-4 md:flex"
+          >
             <Link
               href="/sign-in"
               className="flex h-12 min-w-45 items-center justify-center rounded-2xl bg-linear-to-r from-violet-500 to-fuchsia-500 px-8 text-sm font-semibold text-white shadow-[0_12px_34px_rgba(139,92,246,0.32)] transition hover:scale-[1.01]"
@@ -92,7 +150,7 @@ export default function HomePage() {
             >
               Registrati
             </Link>
-          </section>
+          </motion.section>
         </div>
       </div>
     </main>
