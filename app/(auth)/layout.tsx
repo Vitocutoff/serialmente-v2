@@ -12,7 +12,15 @@ export default function AuthLayout({
         alt="Background SerialMente"
         fill
         priority
-        className="object-cover"
+        className="object-cover md:hidden"
+      />
+
+      <Image
+        src="/bgAppDesktop.png"
+        alt="Background SerialMente desktop"
+        fill
+        priority
+        className="hidden object-cover md:block"
       />
 
       <div className="absolute inset-0 bg-linear-to-b from-black/30 via-black/45 to-black/80" />
