@@ -6,7 +6,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="relative h-svh w-full overflow-hidden">
+    <main className="relative min-h-svh w-full">
       <Image
         src="/bgApp.png"
         alt="Background SerialMente"
@@ -19,18 +19,25 @@ export default function AuthLayout({
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.22)_0%,rgba(139,92,246,0.08)_22%,transparent_48%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.22)_70%,rgba(0,0,0,0.52)_100%)]" />
 
-      <div className="relative z-10 flex h-full flex-col px-4 pb-6 pt-4">
-        <div className="flex-1" />
+      <div className="relative z-10 flex min-h-svh items-center justify-center px-4 py-6">
+        <div className="flex w-full max-w-88 flex-col items-center">
+          <div className="mb-4 flex justify-center">
+            <Image
+              src="/logo.png"
+              alt="Logo SerialMente"
+              width={52}
+              height={52}
+              priority
+              className="object-contain"
+            />
+          </div>
 
-        <section className="mb-8 flex flex-col items-center text-center">
-          <p className="font-brand text-4xl text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)]">
+          <p className="mb-5 font-brand text-4xl text-white drop-shadow-[0_4px_18px_rgba(0,0,0,0.35)]">
             SerialMente
           </p>
-        </section>
 
-        <section className="flex justify-center">
           {children}
-        </section>
+        </div>
       </div>
     </main>
   );
