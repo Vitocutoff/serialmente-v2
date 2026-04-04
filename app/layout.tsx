@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <ClerkProvider localization={itIT}>
       <html lang="it" className={`${manrope.variable} ${audiowide.variable}`}>
-        <body className="font-sans antialiased">{children}</body>
+        <body className="min-h-screen font-sans antialiased">{children}</body>
       </html>
     </ClerkProvider>
   );

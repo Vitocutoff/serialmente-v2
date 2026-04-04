@@ -52,3 +52,12 @@ body {
     linear-gradient(to bottom, #0a1020 0%, #070b14 45%, #05070f 100%);
   color: var(--foreground);
 }
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
