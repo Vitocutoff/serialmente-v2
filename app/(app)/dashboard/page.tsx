@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import { ContinueWatchingSection } from "@/components/dashboard/continue-watching-section";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { FavoritesSection } from "@/components/dashboard/favorites-section";
@@ -7,12 +10,18 @@ import { ProfileOverviewCard } from "@/components/dashboard/profile-overview-car
 import { StatsCards } from "@/components/dashboard/stats-cards";
 
 export default function DashboardPage() {
+  const [nickname, setNickname] = useState("Scegli nome");
+
   return (
     <>
-      <DashboardHeader userName="Vito" />
+      <DashboardHeader userName={nickname} />
 
       <main className="px-4 pb-8 pt-4">
-        <ProfileOverviewCard />
+        <ProfileOverviewCard
+          nickname={nickname}
+          onChangeNickname={setNickname}
+        />
+
         <StatsCards />
         <ContinueWatchingSection />
         <FavoritesSection />

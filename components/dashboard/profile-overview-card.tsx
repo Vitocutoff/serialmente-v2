@@ -1,8 +1,32 @@
 "use client";
 
 import { Camera, Pencil, Plus } from "lucide-react";
+import { useState } from "react";
 
-export function ProfileOverviewCard() {
+type ProfileOverviewCardProps = {
+  nickname: string;
+  onChangeNickname: (value: string) => void;
+};
+
+export function ProfileOverviewCard({
+  nickname,
+  onChangeNickname,
+}: ProfileOverviewCardProps) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [draft, setDraft] = useState(nickname);
+
+  const handleSave = () => {
+    const trimmed = draft.trim();
+
+    onChangeNickname(trimmed || "Scegli nome");
+    setIsEditing(false);
+  };
+
+  const handleCancel = () => {
+    setDraft(nickname);
+    setIsEditing(false);
+  };
+
   return (
     <section className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
       <p className="text-sm font-medium text-foreground-muted">Bentornato</p>
@@ -13,17 +37,52 @@ export function ProfileOverviewCard() {
             Nickname
           </p>
 
-          <p className="mt-1.5 text-xl font-semibold tracking-[-0.03em] text-white">
-            Scegli nome
-          </p>
+          {!isEditing ? (
+            <>
+              <p className="mt-1.5 text-xl font-semibold tracking-[-0.03em] text-white">
+                {nickname}
+              </p>
 
-          <button
-            type="button"
-            className="mt-3 inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/8 px-2.5 py-1.5 text-[13px] font-medium text-white transition hover:bg-white/10 active:scale-[0.98]"
-          >
-            <Pencil className="h-3.5 w-3.5" strokeWidth={2.1} />
-            Modifica
-          </button>
+              <button
+                type="button"
+                onClick={() => {
+                  setDraft(nickname === "Scegli nome" ? "" : nickname);
+                  setIsEditing(true);
+                }}
+                className="mt-3 inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/8 px-2.5 py-1.5 text-[13px] font-medium text-white transition hover:bg-white/10 active:scale-[0.98]"
+              >
+                <Pencil className="h-3.5 w-3.5" strokeWidth={2.1} />
+                Modifica
+              </button>
+            </>
+          ) : (
+            <div className="mt-2">
+              <input
+                value={draft}
+                onChange={(e) => setDraft(e.target.value)}
+                placeholder="Inserisci nome"
+                className="h-10 w-full rounded-2xl border border-white/10 bg-white/10 px-3 text-sm text-white outline-none placeholder:text-white/35 focus:border-violet-400"
+              />
+
+              <div className="mt-3 flex gap-2">
+                <button
+                  type="button"
+                  onClick={handleSave}
+                  className="rounded-xl bg-linear-to-r from-violet-500 to-fuchsia-500 px-3 py-2 text-[13px] font-medium text-white transition active:scale-[0.98]"
+                >
+                  Salva
+                </button>
+
+                <button
+                  type="button"
+                  onClick={handleCancel}
+                  className="rounded-xl border border-white/10 bg-white/8 px-3 py-2 text-[13px] font-medium text-white transition hover:bg-white/10 active:scale-[0.98]"
+                >
+                  Annulla
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className="relative shrink-0">
