@@ -9,7 +9,7 @@ export function ProfileOverviewCard() {
 
       <div className="mt-4 flex items-center justify-between gap-4">
         <div className="min-w-0 flex-1">
-          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-foreground-muted">
+          <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-amber-300">
             Nickname
           </p>
 
@@ -29,10 +29,10 @@ export function ProfileOverviewCard() {
         <div className="relative shrink-0">
           <label
             htmlFor="profile-image"
-            className="group relative flex h-20 w-20 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/8 transition hover:bg-white/10"
+            className="group relative flex h-24 w-24 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/8 transition hover:bg-white/10"
           >
             <Plus
-              className="h-6 w-6 text-white/85 transition group-hover:scale-105"
+              className="h-7 w-7 text-white/85 transition group-hover:scale-105"
               strokeWidth={2.1}
             />
             <span className="sr-only">Carica foto profilo</span>
@@ -40,9 +40,9 @@ export function ProfileOverviewCard() {
 
           <label
             htmlFor="profile-image"
-            className="absolute -bottom-1 -right-1 flex h-7 w-7 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-violet-500 text-black shadow-[0_8px_18px_rgba(139,92,246,0.28)] transition active:scale-[0.96]"
+            className="absolute -bottom-1 -right-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-amber-400 text-black shadow-[0_8px_18px_rgba(251,191,36,0.28)] transition active:scale-[0.96]"
           >
-            <Camera className="h-3.5 w-3.5" strokeWidth={2.2} />
+            <Camera className="h-4 w-4" strokeWidth={2.2} />
             <span className="sr-only">Scatta o scegli una foto</span>
           </label>
 
