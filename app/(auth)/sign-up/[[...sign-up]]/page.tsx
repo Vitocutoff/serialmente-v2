@@ -50,16 +50,18 @@ export default function SignUpPage() {
         }}
       />
 
-      <p className="mt-4 text-center text-[12px] leading-6 text-white/75">
-        Registrandoti, confermi di aver letto la {" "}
+      <div className="mt-5 text-center">
+        <p className="text-[12px] leading-5 text-white/55">
+          Registrandoti, confermi di aver letto la documentazione privacy.
+        </p>
+
         <Link
           href="/privacy"
-          className="font-medium text-white hover:text-white/90 underline"
+          className="mt-2 inline-block text-[12px] font-medium text-white underline underline-offset-4 transition hover:text-white/90"
         >
           Privacy Policy
         </Link>
-        .
-      </p>
+      </div>
     </div>
   );
 }

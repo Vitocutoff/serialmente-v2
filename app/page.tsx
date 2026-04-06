@@ -2,11 +2,84 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
-const easeOutExpo = [0.16, 1, 0.3, 1] as const;
+const heroEase = [0.22, 1, 0.36, 1] as const;
 
 export default function HomePage() {
+  const shouldReduceMotion = useReducedMotion();
+
+  const heroContainer = {
+    hidden: {},
+    visible: {
+      transition: shouldReduceMotion
+        ? {}
+        : {
+            staggerChildren: 0.1,
+            delayChildren: 0.18,
+          },
+    },
+  };
+
+  const heroItem = {
+    hidden: {
+      opacity: 0,
+      ...(shouldReduceMotion ? {} : { y: 14, scale: 0.985 }),
+    },
+    visible: {
+      opacity: 1,
+      ...(shouldReduceMotion
+        ? {}
+        : {
+            y: 0,
+            scale: 1,
+            transition: {
+              duration: 0.8,
+              ease: heroEase,
+            },
+          }),
+    },
+  };
+
+  const heroItemSoft = {
+    hidden: {
+      opacity: 0,
+      ...(shouldReduceMotion ? {} : { y: 10 }),
+    },
+    visible: {
+      opacity: 1,
+      ...(shouldReduceMotion
+        ? {}
+        : {
+            y: 0,
+            transition: {
+              duration: 0.75,
+              ease: heroEase,
+            },
+          }),
+    },
+  };
+
+  const ctaMotion = {
+    hidden: {
+      opacity: 0,
+      ...(shouldReduceMotion ? {} : { y: 12 }),
+    },
+    visible: {
+      opacity: 1,
+      ...(shouldReduceMotion
+        ? {}
+        : {
+            y: 0,
+            transition: {
+              duration: 0.8,
+              ease: heroEase,
+              delay: 0.08,
+            },
+          }),
+    },
+  };
+
   return (
     <main
       className="relative
@@ -29,6 +102,7 @@ export default function HomePage() {
           className="object-cover"
         />
       </div>
+
       <div
         className="fixed
                    inset-0
@@ -41,6 +115,7 @@ export default function HomePage() {
           backgroundImage: "url('/bgAppDesktop.png')",
         }}
       />
+
       <div
         className="fixed
                    inset-0
@@ -52,12 +127,14 @@ export default function HomePage() {
                    md:via-black/28
                    md:to-black/68"
       />
+
       <div
         className="fixed
                    inset-0
                    bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.22)_0%,rgba(139,92,246,0.08)_22%,transparent_48%)]
                    md:bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.14)_0%,rgba(139,92,246,0.06)_18%,transparent_38%)]"
       />
+
       <div
         className="fixed
                    inset-0
@@ -74,34 +151,23 @@ export default function HomePage() {
                    flex-col
                    md:hidden"
       >
-        <div
-          className="flex-1"
-        />
+        <div className="flex-1" />
+
         <div
           className="px-4
                      pb-6
                      text-center"
         >
           <motion.section
-            initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1.05,
-              ease: easeOutExpo,
-              delay: 0.2,
-            }}
+            variants={heroContainer}
+            initial="hidden"
+            animate="visible"
             className="flex
                        flex-col
                        items-center"
           >
             <motion.div
-              initial={{ opacity: 0, y: 12, scale: 0.975 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{
-                duration: 1.1,
-                ease: easeOutExpo,
-                delay: 0.28,
-              }}
+              variants={heroItem}
               className="relative
                          mb-6
                          flex
@@ -115,7 +181,8 @@ export default function HomePage() {
                            h-24
                            w-24
                            rounded-full
-                           bg-brand/30 blur-2xl"
+                           bg-brand/30
+                           blur-2xl"
               />
               <div
                 className="relative
@@ -133,14 +200,9 @@ export default function HomePage() {
                 />
               </div>
             </motion.div>
+
             <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.95,
-                ease: easeOutExpo,
-                delay: 0.4,
-              }}
+              variants={heroItemSoft}
               className="font-brand
                          text-4xl
                          text-white
@@ -148,14 +210,9 @@ export default function HomePage() {
             >
               SerialMente
             </motion.p>
+
             <motion.p
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.95,
-                ease: easeOutExpo,
-                delay: 0.52,
-              }}
+              variants={heroItemSoft}
               className="mt-4
                          max-w-xs
                          text-sm
@@ -166,14 +223,11 @@ export default function HomePage() {
               alla visione e non farti più sfuggire nessun episodio!
             </motion.p>
           </motion.section>
+
           <motion.section
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 0.95,
-              ease: easeOutExpo,
-              delay: 0.66,
-            }}
+            variants={ctaMotion}
+            initial="hidden"
+            animate="visible"
             className="mt-10
                        flex
                        w-full
@@ -199,6 +253,7 @@ export default function HomePage() {
             >
               Accedi
             </Link>
+
             <Link
               href="/sign-up"
               className="flex
@@ -233,29 +288,20 @@ export default function HomePage() {
                    md:items-center
                    md:justify-center
                    md:px-8
-                   md:pb-8 md:pt-6"
+                   md:pb-8
+                   md:pt-6"
       >
         <motion.section
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 1.1,
-            ease: easeOutExpo,
-            delay: 0.2,
-          }}
+          variants={heroContainer}
+          initial="hidden"
+          animate="visible"
           className="flex
                      flex-col
                      items-center
                      text-center"
         >
           <motion.div
-            initial={{ opacity: 0, y: 12, scale: 0.975 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{
-              duration: 1.15,
-              ease: easeOutExpo,
-              delay: 0.28,
-            }}
+            variants={heroItem}
             className="relative
                        mb-7
                        flex
@@ -288,14 +334,9 @@ export default function HomePage() {
               />
             </div>
           </motion.div>
+
           <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1,
-              ease: easeOutExpo,
-              delay: 0.4,
-            }}
+            variants={heroItemSoft}
             className="font-brand
                        text-5xl
                        text-white
@@ -304,14 +345,9 @@ export default function HomePage() {
           >
             SerialMente
           </motion.p>
+
           <motion.p
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{
-              duration: 1,
-              ease: easeOutExpo,
-              delay: 0.52,
-            }}
+            variants={heroItemSoft}
             className="mt-5
                        max-w-xl
                        text-[15px]
@@ -323,14 +359,11 @@ export default function HomePage() {
             alla visione e non farti più sfuggire nessun episodio!
           </motion.p>
         </motion.section>
+
         <motion.section
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 1,
-            ease: easeOutExpo,
-            delay: 0.66,
-          }}
+          variants={ctaMotion}
+          initial="hidden"
+          animate="visible"
           className="mt-8
                      flex
                      flex-wrap
@@ -359,6 +392,7 @@ export default function HomePage() {
           >
             Accedi
           </Link>
+
           <Link
             href="/sign-up"
             className="flex

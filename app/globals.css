@@ -42,22 +42,18 @@
 }
 
 html {
+  height: 100%;
+  margin: 0;
   background-color: var(--background);
+  color-scheme: dark;
 }
 
 body {
+  height: 100%;
   min-height: 100vh;
+  margin: 0;
+  color: var(--foreground);
   background:
     radial-gradient(circle at top, rgba(139, 92, 246, 0.18), transparent 30%),
     linear-gradient(to bottom, #0a1020 0%, #070b14 45%, #05070f 100%);
-  color: var(--foreground);
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
 }
