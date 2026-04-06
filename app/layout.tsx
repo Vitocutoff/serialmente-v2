@@ -19,9 +19,20 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <ClerkProvider localization={itIT}>
-      <html lang="it" className={`${manrope.variable} ${audiowide.variable}`}>
-        <body className="min-h-screen font-sans antialiased">{children}</body>
+    <ClerkProvider
+      localization={itIT}
+    >
+      <html
+        lang="it"
+        className={`${manrope.variable} ${audiowide.variable}`}
+      >
+        <body
+          className="min-h-screen
+                     font-sans
+                     antialiased"
+        >
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );
