@@ -120,7 +120,7 @@ export function DashboardHeader({ userName }: DashboardHeaderProps) {
               ease: [0.22, 1, 0.36, 1],
             }}
             className={cn(
-              "relative z-[60] flex h-9 w-9 items-center justify-center rounded-full transition active:scale-[0.96]",
+              "relative z-60 flex h-9 w-9 items-center justify-center rounded-full transition active:scale-[0.96]",
               isMenuOpen
                 ? "bg-white/14 text-white shadow-[0_8px_18px_rgba(255,255,255,0.08)] backdrop-blur-xl"
                 : isScrolled
@@ -162,7 +162,7 @@ export function DashboardHeader({ userName }: DashboardHeaderProps) {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -18, scale: 0.985 }}
               transition={menuTransition}
-              className="fixed inset-x-0 top-0 z-[55]"
+              className="fixed inset-x-0 top-0 z-55"
             >
               <div className="mx-auto max-w-md px-4 pt-18">
                 <div className="overflow-hidden rounded-xl border border-white/10 bg-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.28)] backdrop-blur-2xl">
