@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+
 import { ContinueWatchingSection } from "@/components/dashboard/continue-watching-section";
 import { DashboardHeader } from "@/components/dashboard/dashboard-header";
 import { FavoritesSection } from "@/components/dashboard/favorites-section";
@@ -16,17 +17,19 @@ export default function DashboardPage() {
     <>
       <DashboardHeader userName={nickname} />
 
-      <main className="px-4 pb-8 pt-4">
-        <ProfileOverviewCard
-          nickname={nickname}
-          onChangeNickname={setNickname}
-        />
+      <main className="px-4 pt-4 pb-10">
+        <div className="space-y-0">
+          <ProfileOverviewCard
+            nickname={nickname}
+            onChangeNickname={setNickname}
+          />
 
-        <StatsCards />
-        <ContinueWatchingSection />
-        <FavoritesSection />
-        <ListsSection />
-        <FollowedCompletedCards />
+          <StatsCards />
+          <ContinueWatchingSection />
+          <FavoritesSection />
+          <ListsSection />
+          <FollowedCompletedCards />
+        </div>
       </main>
     </>
   );
