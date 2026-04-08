@@ -1,7 +1,7 @@
 "use client";
 
 import { Camera, Pencil, Plus } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 type ProfileOverviewCardProps = {
   nickname: string;
@@ -15,6 +15,21 @@ export function ProfileOverviewCard({
   const [isEditing, setIsEditing] = useState(false);
   const [draft, setDraft] = useState(nickname);
 
+  const textInputRef = useRef<HTMLInputElement>(null);
+  const galleryInputRef = useRef<HTMLInputElement>(null);
+  const cameraInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!isEditing) return;
+
+    const frame = requestAnimationFrame(() => {
+      textInputRef.current?.focus();
+      textInputRef.current?.select();
+    });
+
+    return () => cancelAnimationFrame(frame);
+  }, [isEditing]);
+
   const handleSave = () => {
     const trimmed = draft.trim();
 
@@ -27,11 +42,29 @@ export function ProfileOverviewCard({
     setIsEditing(false);
   };
 
-  return (
-    <section className="rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
-      <p className="text-sm font-medium text-foreground-muted">Bentornato</p>
+  const handleOpenEdit = () => {
+    setDraft(nickname === "Scegli nome" ? "" : nickname);
+    setIsEditing(true);
+  };
 
-      <div className="mt-4 flex items-center justify-between gap-4">
+  const handleOpenGallery = () => {
+    galleryInputRef.current?.click();
+  };
+
+  const handleOpenCamera = () => {
+    cameraInputRef.current?.click();
+  };
+
+  return (
+    <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
+      <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-violet-400/12" />
+      <div className="pointer-events-none absolute inset-0 rounded-3xl shadow-[inset_0_0_0_1px_rgba(139,92,246,0.10),0_0_20px_rgba(139,92,246,0.16)]" />
+
+      <p className="relative z-10 text-sm font-medium text-foreground-muted">
+        Bentornato
+      </p>
+
+      <div className="relative z-10 mt-4 flex items-center justify-between gap-4">
         <div className="min-w-0 flex-1">
           <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-amber-300">
             Nickname
@@ -45,10 +78,7 @@ export function ProfileOverviewCard({
 
               <button
                 type="button"
-                onClick={() => {
-                  setDraft(nickname === "Scegli nome" ? "" : nickname);
-                  setIsEditing(true);
-                }}
+                onClick={handleOpenEdit}
                 className="mt-3 inline-flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/8 px-2.5 py-1.5 text-[13px] font-medium text-white transition hover:bg-white/10 active:scale-[0.98]"
               >
                 <Pencil className="h-3.5 w-3.5" strokeWidth={2.1} />
@@ -58,10 +88,15 @@ export function ProfileOverviewCard({
           ) : (
             <div className="mt-2">
               <input
+                ref={textInputRef}
                 value={draft}
                 onChange={(e) => setDraft(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleSave();
+                  if (e.key === "Escape") handleCancel();
+                }}
                 placeholder="Inserisci nome"
-                className="h-10 w-full rounded-2xl border border-white/10 bg-white/10 px-3 text-sm text-white outline-none placeholder:text-white/35 focus:border-violet-400"
+                className="h-10 w-full rounded-2xl border border-white/10 bg-white/10 px-3 text-[16px] text-white outline-none placeholder:text-white/35 focus:border-violet-400"
               />
 
               <div className="mt-3 flex gap-2">
@@ -86,27 +121,38 @@ export function ProfileOverviewCard({
         </div>
 
         <div className="relative shrink-0">
-          <label
-            htmlFor="profile-image"
-            className="group relative flex h-24 w-24 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-white/8 transition hover:bg-white/10"
+          <button
+            type="button"
+            onClick={handleOpenGallery}
+            className="group relative flex h-24 w-24 items-center justify-center rounded-full border border-white/10 bg-white/8 transition hover:bg-white/10 active:scale-[0.98]"
+            aria-label="Scegli una foto dal dispositivo"
           >
+            <div className="absolute inset-0 rounded-full shadow-[inset_0_0_0_1px_rgba(139,92,246,0.12),0_0_14px_rgba(139,92,246,0.16)]" />
+
             <Plus
-              className="h-7 w-7 text-white/85 transition group-hover:scale-105"
+              className="relative h-7 w-7 text-white/85 transition group-hover:scale-105"
               strokeWidth={2.1}
             />
-            <span className="sr-only">Carica foto profilo</span>
-          </label>
+          </button>
 
-          <label
-            htmlFor="profile-image"
-            className="absolute -bottom-1 -right-1 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-white/10 bg-amber-400 text-black shadow-[0_8px_18px_rgba(251,191,36,0.28)] transition active:scale-[0.96]"
+          <button
+            type="button"
+            onClick={handleOpenCamera}
+            className="absolute -bottom-1 -right-1 flex h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-amber-400 text-black shadow-[0_8px_18px_rgba(251,191,36,0.28)] transition active:scale-[0.96]"
+            aria-label="Scatta una foto"
           >
             <Camera className="h-4 w-4" strokeWidth={2.2} />
-            <span className="sr-only">Scatta o scegli una foto</span>
-          </label>
+          </button>
 
           <input
-            id="profile-image"
+            ref={galleryInputRef}
+            type="file"
+            accept="image/*"
+            className="hidden"
+          />
+
+          <input
+            ref={cameraInputRef}
             type="file"
             accept="image/*"
             capture="environment"
