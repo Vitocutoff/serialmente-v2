@@ -23,7 +23,7 @@ export function ContinueWatchingSection() {
         className="mb-3 flex items-center justify-between"
       >
         <h2 className="text-lg font-semibold tracking-[-0.02em] text-white">
-          Continua
+          Continua a guardare
         </h2>
 
         <ChevronRight
@@ -33,7 +33,7 @@ export function ContinueWatchingSection() {
       </Link>
 
       <div className="-mr-4 overflow-x-auto pb-1 pr-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-        <div className="flex gap-0.5">
+        <div className="flex gap-1.5">
           {continueWatchingMock.map((show) => (
             <Link
               key={show.id}
@@ -41,7 +41,7 @@ export function ContinueWatchingSection() {
               className="group relative block shrink-0"
               aria-label={show.title}
             >
-              <div className="relative aspect-2/3 w-[30.5vw] min-w-28 max-w-31 overflow-hidden rounded-2xl border border-white/8 bg-white/5">
+              <div className="relative aspect-2/3 w-[30.5vw] min-w-28 max-w-31 overflow-hidden rounded-xl border border-white/5 bg-white/5">
                 <Image
                   src={show.poster}
                   alt={show.title}

@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { ChevronRight, Heart, Plus } from "lucide-react";
+import { ChevronRight, Heart } from "lucide-react";
 
 export function FavoritesSection() {
   return (
     <section className="mt-6">
-      {/* Header */}
       <Link
         href="/shows"
         className="mb-3 flex items-center justify-between"
@@ -15,7 +14,7 @@ export function FavoritesSection() {
           </div>
 
           <h2 className="text-lg font-semibold tracking-[-0.02em] text-white">
-            Preferiti
+            Serie TV preferite
           </h2>
         </div>
 
@@ -25,26 +24,14 @@ export function FavoritesSection() {
         />
       </Link>
 
-      {/* Empty state */}
-      <div className="flex gap-0.5 overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
-        <div className="flex gap-0.5">
-          <button
-            type="button"
-            className="group relative flex shrink-0 items-center justify-center"
-          >
-            <div className="relative aspect-2/3 w-[30.5vw] min-w-28 max-w-31 overflow-hidden rounded-2xl border border-white/10 bg-white/5 transition hover:bg-white/10">
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-                <Plus
-                  className="h-6 w-6 text-white/70 transition group-hover:scale-105"
-                  strokeWidth={2.2}
-                />
+      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl">
+        <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-red-400/10" />
+        <div className="pointer-events-none absolute inset-0 rounded-3xl shadow-[inset_0_0_0_1px_rgba(248,113,113,0.06),0_0_18px_rgba(239,68,68,0.10)]" />
 
-                <span className="text-[11px] font-medium text-foreground-muted">
-                  Aggiungi ai preferiti
-                </span>
-              </div>
-            </div>
-          </button>
+        <div className="relative z-10 flex items-center justify-center">
+          <p className="text-sm font-medium text-foreground-muted text-center">
+            Ancora nessun preferito.
+          </p>
         </div>
       </div>
     </section>
