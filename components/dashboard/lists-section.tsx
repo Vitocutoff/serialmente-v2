@@ -14,7 +14,7 @@ export function ListsSection() {
           </div>
 
           <h2 className="text-lg font-semibold tracking-[-0.02em] text-white">
-            Liste
+            Le mie liste
           </h2>
         </div>
 
@@ -26,15 +26,20 @@ export function ListsSection() {
 
       <button
         type="button"
-        className="group flex w-full items-center justify-center"
+        className="group relative flex w-full items-center justify-center"
       >
-        <div className="flex min-h-34 w-full flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/5 px-4 py-6 backdrop-blur-xl transition hover:bg-white/8 active:scale-[0.99]">
+        <div className="relative flex min-h-34 w-full flex-col items-center justify-center rounded-3xl border border-white/10 bg-white/5 px-4 py-6 backdrop-blur-xl transition active:scale-[0.99]">
+
+          {/* Glow soft neutro */}
+          <div className="pointer-events-none absolute inset-0 rounded-3xl ring-1 ring-white/6" />
+          <div className="pointer-events-none absolute inset-0 rounded-3xl shadow-[inset_0_0_0_1px_rgba(255,255,255,0.04),0_0_16px_rgba(255,255,255,0.06)]" />
+
           <Plus
-            className="h-7 w-7 text-white/70 transition group-hover:scale-105"
+            className="relative h-7 w-7 text-white/70 transition group-hover:scale-105"
             strokeWidth={2.2}
           />
 
-          <span className="mt-2 text-sm font-medium text-foreground-muted">
+          <span className="relative mt-2 text-sm font-medium text-foreground-muted">
             Crea lista
           </span>
         </div>

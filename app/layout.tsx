@@ -5,6 +5,11 @@ import { itIT } from "@clerk/localizations";
 import { audiowide, manrope } from "@/lib/fonts";
 import "./globals.css";
 
+const clerkLocalization = {
+  ...itIT,
+  formFieldInputPlaceholder__signUpPassword: "Crea password",
+};
+
 export const metadata: Metadata = {
   title: "SerialMente",
   description: "Traccia le tue serie TV preferite.",
@@ -20,7 +25,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <ClerkProvider localization={itIT}>
+    <ClerkProvider localization={clerkLocalization}>
       <html
         lang="it"
         className={`${manrope.variable} ${audiowide.variable}`}

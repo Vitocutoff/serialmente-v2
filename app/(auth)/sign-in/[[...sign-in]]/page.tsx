@@ -22,8 +22,9 @@ export default function SignInPage() {
               "text-[1.75rem] font-semibold tracking-[-0.02em] text-white text-center",
             headerSubtitle: "hidden",
 
+            // 🔥 FIX QUI
             socialButtonsBlockButton:
-              "h-11 rounded-xl border border-white/10 bg-white text-[14px] font-medium text-black hover:bg-white/90",
+              "h-11 rounded-xl bg-white/90 text-[14px] font-medium text-black backdrop-blur-sm transition hover:bg-white",
             socialButtonsBlockButtonText: "text-[14px] font-medium",
 
             dividerLine: "bg-white/10",
@@ -35,7 +36,7 @@ export default function SignInPage() {
               "h-11 rounded-xl border border-white/10 bg-white/10 px-4 text-[16px] text-white placeholder:text-[14px] placeholder:text-white/40 focus:border-violet-400",
 
             formButtonPrimary:
-              "mt-1 h-11 rounded-xl bg-linear-to-r from-violet-500 to-fuchsia-500 text-[14px] font-semibold text-white shadow-[0_10px_30px_rgba(139,92,246,0.35)]",
+              "mt-1 h-11 rounded-xl bg-linear-to-r from-violet-500 to-fuchsia-500 text-[14px] font-semibold text-white shadow-[0_10px_30px_rgba(139,92,246,0.35)] [&_*]:text-white focus:outline-none focus:ring-0",
 
             footerAction: "pt-4",
             footerActionText: "text-[14px] text-white/45",
